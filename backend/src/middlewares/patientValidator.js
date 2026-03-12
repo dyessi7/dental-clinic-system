@@ -5,10 +5,10 @@ const validatePatient = [
         .isNumeric().withMessage('El DNI solo debe contener numeros'),
     body('nombre')
         .trim().notEmpty().withMessage('El nombre es obligatorio')
-        .isAlpha('es-ES', {ignore: ''}).withMessage('El nombre solo debe contener letras'),
+        .isAlpha('es-ES', {ignore: ' '}).withMessage('El nombre solo debe contener letras'),
     body('apellido')
         .trim().notEmpty().withMessage('El apellido es obligatorio')
-        .isAlpha('es-ES', {ignore: ''}).withMessage('El apellido solo debe contener letras'),
+        .isAlpha('es-ES', {ignore: ' '}).withMessage('El apellido solo debe contener letras'),
     body('telefono')
         .trim()
         .matches(/^(\+?51)?\s?(\d{9}|(\d{2,3})\s?\d{6,7})$/)
