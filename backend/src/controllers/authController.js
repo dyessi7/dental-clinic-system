@@ -50,8 +50,19 @@ const login = async (req, res) => {
         }
         await db.execute('UPDATE USUARIO SET intentos_fallidos = 0, bloqueado_hasta = NULL WHERE usuario_id = ?', [user.usuario_id]);
 
+        const token = jwt.sign(
+            {
+                id: user.usuario_id, rol: user.rol
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '2h'
+            }
+        );
+
         res.status(200).json({
             message: "Bienvenido al sistema",
+            token,
             rol: user.rol,
             redirect: `/${user.rol.toLowerCase()}/dashboard`
         });
