@@ -10,13 +10,16 @@ app.use(express.json());
 
 
 //RUTAS
+
+////RUTA LOGIN
+app.use('/api/auth', require('./routes/authRoutes'));
+
 //RUTA SERVICIO
-const serviceRoutes = require('./routes/serviceRoutes');
-app.use('/api/servicios', serviceRoutes);
+app.use('/api/servicios', require('./routes/serviceRoutes'));
 
 //RUTA PACIENTE
-const patientRoutes = require('./routes/patientRoutes');
-app.use('/api/pacientes', patientRoutes);
+app.use('/api/pacientes', require('./routes/patientRoutes'));
+
 
 
 
