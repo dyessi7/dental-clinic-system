@@ -48,6 +48,25 @@ const registrarDoctor = async (req, res) => {
 };
 
 
+const listarDoctores = async (rec, res) => {
+    try {
+        const [rown] = await db.query(`
+            SELECT u.usuario, u.nombre, u.apellido, d.especialidad
+            FROM USUARIO u
+            INNER JOIN DOCTOR d ON u.usuario_id = doctor_id
+            WHERE u.estado = 'ACTIVO' 
+        `);
+        res.status(200).json(rown);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Error al obtener la lista de doctores"
+        });
+    }
+};
+
+
 module.exports = {
-    registrarDoctor
+    registrarDoctor,
+    listarDoctores
 }
