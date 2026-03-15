@@ -12,16 +12,16 @@ const crearHorario = async(req, res) => {
                 OR (hora_inicio >= ? AND hora_inicio < ?)
                 OR (hora_fin > ? AND hora_fin <= ?)
             )`,
-            [doctor_id, dia_semana, hora_fin, hora_inicio, , hora_inicio, hora_fin , hora_inicio, hora_fin]
+            [doctor_id, dia_semana, hora_fin, hora_inicio, hora_inicio, hora_fin , hora_inicio, hora_fin]
         );
         
-        if(existence.length > 0){
+        if(existence && existence.length > 0){
             return res.status(400).json({
                 message: "El doctor ya tiene un horario asignado en este rando de tiempo."
             });
         }
 
-        await db.query(
+        const[result] = await db.query(
             'INSERT INTO HORARIO (doctor_id, dia_semana, hora_inicio, hora_fin) VALUES (?,?,?,?)',
             [doctor_id, dia_semana, hora_inicio, hora_fin]
         );
