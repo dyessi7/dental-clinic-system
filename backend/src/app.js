@@ -23,6 +23,9 @@ app.use('/api/pacientes', require('./routes/patientRoutes'));
 //RUTA DOCTOR
 app.use('/api/doctor', require('./routes/doctorRoutes'));
 
+//RUTA HORARIOS
+app.use('/api/horarios', require('./routes/horarioRoutes'));
+
 
 app.get('/',(req, res)=>{
     res.send('Servidor de Clinica dental funcionando');
