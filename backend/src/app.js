@@ -20,7 +20,8 @@ app.use('/api/servicios', require('./routes/serviceRoutes'));
 //RUTA PACIENTE
 app.use('/api/pacientes', require('./routes/patientRoutes'));
 
-
+//RUTA DOCTOR
+app.use('/api/doctor', require('./routes/doctorRoutes'));
 
 
 app.get('/',(req, res)=>{
