@@ -30,7 +30,27 @@ const isAdmin = (req, res, next) => {
     next();
 };
 
+const isRecepcionista = (req, res, next) => {
+    if(req.user.rol !== 'RECEPCIONISTA'){
+        return res.status(403).json({
+            message: 'Requiere ser Reepcionista'
+        });
+    }
+    next();
+}
+
+const esrol = (rolPermitido) => {
+    return (req, res, next) => {
+        if(req.user.rol !== rolPermitido){
+        return res.status(403).json({
+            message: `Requiere ser ${rolPermitido}`
+        });
+    }
+    next();
+    }
+} 
+
 module.exports = {
     verifyToken,
-    isAdmin
+    esrol
 }
